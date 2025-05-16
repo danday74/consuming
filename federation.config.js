@@ -6,6 +6,8 @@ module.exports = withNativeFederation({
     ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
   },
 
+  remotes: ['mfe-exposing-remote'],
+
   skip: [
     'rxjs/ajax',
     'rxjs/fetch',
