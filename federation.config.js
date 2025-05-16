@@ -1,5 +1,6 @@
 const { withNativeFederation, shareAll } = require('@angular-architects/native-federation/config')
 
+// noinspection JSCheckFunctionSignatures
 module.exports = withNativeFederation({
 
   shared: {
