@@ -16,7 +16,7 @@ module.exports = tseslint.config(
     rules: {
       'comma-dangle': ['error', 'always-multiline'],
       'semi': ['error', 'never'],
-      'quotes': ['error', 'double', { 'avoidEscape': true }],
+      'quotes': ['error', 'single', { 'avoidEscape': true }],
       '@angular-eslint/directive-selector': [
         'error',
         {
