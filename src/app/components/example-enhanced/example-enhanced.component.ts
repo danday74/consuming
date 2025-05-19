@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, Injector, OnInit, viewChild, ViewContainerRef } from '@angular/core'
+import { AfterViewInit, Component, inject, Injector, input, OnInit, viewChild, ViewContainerRef } from '@angular/core'
 import { RemoteService } from '../../services/remote/remote.service'
 import { ProjectionComponent } from '../projection/projection.component'
 
@@ -9,6 +9,11 @@ import { ProjectionComponent } from '../projection/projection.component'
   styleUrl: './example-enhanced.component.scss',
 })
 export class ExampleEnhancedComponent implements OnInit, AfterViewInit {
+  remoteName = input.required<string>()
+  exposedModule = input.required<string>()
+  serviceName = input.required<string>()
+  componentName = input.required<string>()
+
   private vc = viewChild('vc', { read: ViewContainerRef })
 
   private remoteService: RemoteService = inject(RemoteService)
@@ -23,17 +28,17 @@ export class ExampleEnhancedComponent implements OnInit, AfterViewInit {
   }
 
   private async injectRemoteService() {
-    const MyRemoteService = await this.remoteService.getFromMySharedLib('MyRemoteService')
-    if (MyRemoteService) {
-      const myRemoteService = this.injector.get(MyRemoteService)
-      myRemoteService.hello()
+    const Service = await this.remoteService.getFromMySharedLib(this.remoteName(), this.exposedModule(), this.serviceName())
+    if (Service) {
+      const service = this.injector.get(Service)
+      service.hello()
     }
   }
 
   private async createRemoteComponent() {
-    const MyRemoteComponent = await this.remoteService.getFromMySharedLib('MyRemoteComponent')
-    if (MyRemoteComponent) {
-      this.vc()!.createComponent(MyRemoteComponent, { injector: this.injector })
+    const Component = await this.remoteService.getFromMySharedLib(this.remoteName(), this.exposedModule(), this.componentName())
+    if (Component) {
+      this.vc()!.createComponent(Component, { injector: this.injector })
     }
   }
 }

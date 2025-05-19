@@ -3,9 +3,7 @@ import { loadRemoteModule } from '@angular-architects/native-federation'
 
 @Injectable({ providedIn: 'root' })
 export class RemoteService {
-  async getFromMySharedLib(key: string) {
-    const remoteName = 'mfe-exposing-remote-2222'
-    const exposedModule = './MySharedLib'
+  async getFromMySharedLib(remoteName: string, exposedModule: string, name: string) {
     let module
 
     try {
@@ -15,14 +13,14 @@ export class RemoteService {
       return null
     }
 
-    const exposed = module[key]
+    const exposed = module[name]
 
     if (exposed == null) {
-      console.warn(`Unable to get: ${remoteName} > ${exposedModule} > ${key}`)
+      console.warn(`Unable to get: ${remoteName} > ${exposedModule} > ${name}`)
       return null
     }
 
-    return module[key]
+    return module[name]
   }
 
   private async getRemoteModule(remoteName: string, exposedModule: string) {
