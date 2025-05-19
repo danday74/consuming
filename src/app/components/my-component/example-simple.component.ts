@@ -22,14 +22,15 @@ export class ExampleSimpleComponent implements OnInit, AfterViewInit {
 
   private async injectRemoteService() {
     const module = await this.getRemoteModule()
-    const MySharedLibService = module.MySharedLibService
-    const mySharedLibService = this.injector.get(MySharedLibService)
-    mySharedLibService.hello()
+    console.log(module)
+    const MyRemoteService = module.MyRemoteService
+    const myRemoteService = this.injector.get(MyRemoteService)
+    myRemoteService.hello()
   }
 
   private async createRemoteComponent() {
     const module = await this.getRemoteModule()
-    const component = module.MySharedLibComponent
+    const component = module.MyRemoteComponent
     this.vc()!.createComponent(component, { injector: this.injector })
   }
 
