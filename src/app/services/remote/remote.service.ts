@@ -4,7 +4,7 @@ import { loadRemoteModule } from '@angular-architects/native-federation'
 @Injectable({ providedIn: 'root' })
 export class RemoteService {
   async getFromMySharedLib(key: string) {
-    const remoteName = 'mfe-exposing-remote'
+    const remoteName = 'mfe-exposing-remote-2222'
     const exposedModule = './MySharedLib'
     let module
 
