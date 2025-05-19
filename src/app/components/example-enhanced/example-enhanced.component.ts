@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, inject, Injector, OnInit, viewChild, ViewContainerRef } from '@angular/core'
 import { RemoteService } from '../../services/remote/remote.service'
+import { ProjectionComponent } from '../projection/projection.component'
 
 @Component({
   selector: 'app-example-enhanced',
-  imports: [],
+  imports: [ProjectionComponent],
   templateUrl: './example-enhanced.component.html',
   styleUrl: './example-enhanced.component.scss',
 })
