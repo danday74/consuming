@@ -23,12 +23,16 @@ export class ExampleEnhancedComponent implements OnInit, AfterViewInit {
 
   private async injectRemoteService() {
     const MyRemoteService = await this.remoteService.getFromMySharedLib('MyRemoteService')
-    const myRemoteService = this.injector.get(MyRemoteService)
-    myRemoteService.hello()
+    if (MyRemoteService) {
+      const myRemoteService = this.injector.get(MyRemoteService)
+      myRemoteService.hello()
+    }
   }
 
   private async createRemoteComponent() {
     const MyRemoteComponent = await this.remoteService.getFromMySharedLib('MyRemoteComponent')
-    this.vc()!.createComponent(MyRemoteComponent, { injector: this.injector })
+    if (MyRemoteComponent) {
+      this.vc()!.createComponent(MyRemoteComponent, { injector: this.injector })
+    }
   }
 }
