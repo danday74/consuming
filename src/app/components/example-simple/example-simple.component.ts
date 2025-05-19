@@ -30,8 +30,8 @@ export class ExampleSimpleComponent implements OnInit, AfterViewInit {
 
   private async createRemoteComponent() {
     const module = await this.getRemoteModule()
-    const component = module.MyRemoteComponent
-    this.vc()!.createComponent(component, { injector: this.injector })
+    const MyRemoteComponent = module.MyRemoteComponent
+    this.vc()!.createComponent(MyRemoteComponent, { injector: this.injector })
   }
 
   private async getRemoteModule() {
