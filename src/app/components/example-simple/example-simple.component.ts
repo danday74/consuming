@@ -23,18 +23,18 @@ export class ExampleSimpleComponent implements OnInit, AfterViewInit {
   private async injectRemoteService() {
     const module = await this.getRemoteModule()
     console.log(module)
-    const MyRemoteService = module.MyRemoteService
+    const MyRemoteService = module.MyRemote2222Service
     const myRemoteService = this.injector.get(MyRemoteService)
     myRemoteService.hello()
   }
 
   private async createRemoteComponent() {
     const module = await this.getRemoteModule()
-    const MyRemoteComponent = module.MyRemoteComponent
+    const MyRemoteComponent = module.MyRemote2222Component
     this.vc()!.createComponent(MyRemoteComponent, { injector: this.injector })
   }
 
   private async getRemoteModule() {
-    return await loadRemoteModule({ remoteName: 'mfe-exposing-remote-2222', exposedModule: './MySharedLib' })
+    return await loadRemoteModule({ remoteName: 'mfe-exposing-remote-2222', exposedModule: './MySharedLib2222' })
   }
 }
