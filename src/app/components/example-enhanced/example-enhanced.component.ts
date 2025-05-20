@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, inject, Injector, input, OnInit, viewChild, ViewContainerRef } from '@angular/core'
 import { RemoteService } from '../../services/remote/remote.service'
 import { ProjectionComponent } from '../projection/projection.component'
+import { ModRemoteService } from '../../interfaces-remote/mod-remote-service.model'
 
 @Component({
   selector: 'app-example-enhanced',
@@ -30,8 +31,8 @@ export class ExampleEnhancedComponent implements OnInit, AfterViewInit {
   private async injectRemoteService() {
     const Service = await this.remoteService.getFromMySharedLib(this.remoteName(), this.exposedModule(), this.serviceName())
     if (Service) {
-      const service = this.injector.get(Service)
-      service.hello()
+      const service: ModRemoteService = this.injector.get<ModRemoteService>(Service)
+      service.hello('=> called from consuming host 1111 ExampleEnhancedComponent')
     }
   }
 

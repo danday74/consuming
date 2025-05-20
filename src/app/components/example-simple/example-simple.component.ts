@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, inject, Injector, OnInit, viewChild, ViewContainerRef } from '@angular/core'
 import { loadRemoteModule } from '@angular-architects/native-federation'
+import { ModRemoteService } from '../../interfaces-remote/mod-remote-service.model'
 
 @Component({
   selector: 'app-example-simple',
@@ -22,10 +23,10 @@ export class ExampleSimpleComponent implements OnInit, AfterViewInit {
 
   private async injectRemoteService() {
     const module = await this.getRemoteModule()
-    console.log(module)
+    console.log('ExampleSimpleComponent module', module)
     const MyRemoteService = module.MyRemote2222Service
-    const myRemoteService = this.injector.get(MyRemoteService)
-    myRemoteService.hello()
+    const myRemoteService: ModRemoteService = this.injector.get<ModRemoteService>(MyRemoteService)
+    myRemoteService.hello('=> called from consuming host 1111 ExampleSimpleComponent')
   }
 
   private async createRemoteComponent() {
