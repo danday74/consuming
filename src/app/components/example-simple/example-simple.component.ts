@@ -35,6 +35,6 @@ export class ExampleSimpleComponent implements OnInit, AfterViewInit {
   }
 
   private async getRemoteModule() {
-    return await loadRemoteModule({ remoteName: 'mfe-exposing-remote-2222', exposedModule: './MySharedLib2222' })
+    return await loadRemoteModule({ remoteName: 'mfe-exposing-remote-2222', exposedModule: 'MySharedLib2222' })
   }
 }
